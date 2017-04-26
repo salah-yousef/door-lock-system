@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "SPI_Driver", "SPI_Driver\SPI_Driver_6_2.cproj", "{DF08351F-BC0C-4332-AB89-81F503846CAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF08351F-BC0C-4332-AB89-81F503846CAB}.Debug|AVR.ActiveCfg = Debug|AVR
+		{DF08351F-BC0C-4332-AB89-81F503846CAB}.Debug|AVR.Build.0 = Debug|AVR
+		{DF08351F-BC0C-4332-AB89-81F503846CAB}.Release|AVR.ActiveCfg = Release|AVR
+		{DF08351F-BC0C-4332-AB89-81F503846CAB}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1240 @@
+
+SPI_Driver.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000007c0  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000834  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000009  00800060  00800060  00000834  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000834  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000864  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000198  00000000  00000000  000008a0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001aaf  00000000  00000000  00000a38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a55  00000000  00000000  000024e7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000f6c  00000000  00000000  00002f3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000228  00000000  00000000  00003ea8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005e3  00000000  00000000  000040d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000b4b  00000000  00000000  000046b3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000c8  00000000  00000000  000051fe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 7c 03 	jmp	0x6f8	; 0x6f8 <__vector_12>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a9 36       	cpi	r26, 0x69	; 105
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 c7 00 	call	0x18e	; 0x18e <main>
+  74:	0c 94 de 03 	jmp	0x7bc	; 0x7bc <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <EEWriteByte>:
+  7c:	1f 93       	push	r17
+  7e:	cf 93       	push	r28
+  80:	df 93       	push	r29
+  82:	ec 01       	movw	r28, r24
+  84:	16 2f       	mov	r17, r22
+  86:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+  8a:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+  8e:	88 30       	cpi	r24, 0x08	; 8
+  90:	09 f5       	brne	.+66     	; 0xd4 <EEWriteByte+0x58>
+  92:	ce 01       	movw	r24, r28
+  94:	88 27       	eor	r24, r24
+  96:	97 70       	andi	r25, 0x07	; 7
+  98:	88 0f       	add	r24, r24
+  9a:	89 2f       	mov	r24, r25
+  9c:	88 1f       	adc	r24, r24
+  9e:	99 0b       	sbc	r25, r25
+  a0:	91 95       	neg	r25
+  a2:	80 6a       	ori	r24, 0xA0	; 160
+  a4:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+  a8:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+  ac:	88 31       	cpi	r24, 0x18	; 24
+  ae:	a1 f4       	brne	.+40     	; 0xd8 <EEWriteByte+0x5c>
+  b0:	8c 2f       	mov	r24, r28
+  b2:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+  b6:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+  ba:	88 32       	cpi	r24, 0x28	; 40
+  bc:	79 f4       	brne	.+30     	; 0xdc <EEWriteByte+0x60>
+  be:	81 2f       	mov	r24, r17
+  c0:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+  c4:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+  c8:	88 32       	cpi	r24, 0x28	; 40
+  ca:	51 f4       	brne	.+20     	; 0xe0 <EEWriteByte+0x64>
+  cc:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+  d0:	80 e0       	ldi	r24, 0x00	; 0
+  d2:	07 c0       	rjmp	.+14     	; 0xe2 <EEWriteByte+0x66>
+  d4:	81 e0       	ldi	r24, 0x01	; 1
+  d6:	05 c0       	rjmp	.+10     	; 0xe2 <EEWriteByte+0x66>
+  d8:	81 e0       	ldi	r24, 0x01	; 1
+  da:	03 c0       	rjmp	.+6      	; 0xe2 <EEWriteByte+0x66>
+  dc:	81 e0       	ldi	r24, 0x01	; 1
+  de:	01 c0       	rjmp	.+2      	; 0xe2 <EEWriteByte+0x66>
+  e0:	81 e0       	ldi	r24, 0x01	; 1
+  e2:	df 91       	pop	r29
+  e4:	cf 91       	pop	r28
+  e6:	1f 91       	pop	r17
+  e8:	08 95       	ret
+
+000000ea <EEReadByte>:
+  ea:	ef 92       	push	r14
+  ec:	ff 92       	push	r15
+  ee:	0f 93       	push	r16
+  f0:	1f 93       	push	r17
+  f2:	cf 93       	push	r28
+  f4:	df 93       	push	r29
+  f6:	ec 01       	movw	r28, r24
+  f8:	8b 01       	movw	r16, r22
+  fa:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+  fe:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 102:	88 30       	cpi	r24, 0x08	; 8
+ 104:	91 f5       	brne	.+100    	; 0x16a <EEReadByte+0x80>
+ 106:	7e 01       	movw	r14, r28
+ 108:	ee 24       	eor	r14, r14
+ 10a:	87 e0       	ldi	r24, 0x07	; 7
+ 10c:	f8 22       	and	r15, r24
+ 10e:	ee 0c       	add	r14, r14
+ 110:	ef 2c       	mov	r14, r15
+ 112:	ee 1c       	adc	r14, r14
+ 114:	ff 08       	sbc	r15, r15
+ 116:	f1 94       	neg	r15
+ 118:	8e 2d       	mov	r24, r14
+ 11a:	80 6a       	ori	r24, 0xA0	; 160
+ 11c:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 120:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 124:	88 31       	cpi	r24, 0x18	; 24
+ 126:	19 f5       	brne	.+70     	; 0x16e <EEReadByte+0x84>
+ 128:	8c 2f       	mov	r24, r28
+ 12a:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 12e:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 132:	88 32       	cpi	r24, 0x28	; 40
+ 134:	f1 f4       	brne	.+60     	; 0x172 <EEReadByte+0x88>
+ 136:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 13a:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 13e:	80 31       	cpi	r24, 0x10	; 16
+ 140:	d1 f4       	brne	.+52     	; 0x176 <EEReadByte+0x8c>
+ 142:	8e 2d       	mov	r24, r14
+ 144:	81 6a       	ori	r24, 0xA1	; 161
+ 146:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 14a:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 14e:	80 34       	cpi	r24, 0x40	; 64
+ 150:	a1 f4       	brne	.+40     	; 0x17a <EEReadByte+0x90>
+ 152:	0e 94 ac 03 	call	0x758	; 0x758 <TWIReadNACK>
+ 156:	f8 01       	movw	r30, r16
+ 158:	80 83       	st	Z, r24
+ 15a:	0e 94 b3 03 	call	0x766	; 0x766 <TWIGetStatus>
+ 15e:	88 35       	cpi	r24, 0x58	; 88
+ 160:	71 f4       	brne	.+28     	; 0x17e <EEReadByte+0x94>
+ 162:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+ 166:	80 e0       	ldi	r24, 0x00	; 0
+ 168:	0b c0       	rjmp	.+22     	; 0x180 <EEReadByte+0x96>
+ 16a:	81 e0       	ldi	r24, 0x01	; 1
+ 16c:	09 c0       	rjmp	.+18     	; 0x180 <EEReadByte+0x96>
+ 16e:	81 e0       	ldi	r24, 0x01	; 1
+ 170:	07 c0       	rjmp	.+14     	; 0x180 <EEReadByte+0x96>
+ 172:	81 e0       	ldi	r24, 0x01	; 1
+ 174:	05 c0       	rjmp	.+10     	; 0x180 <EEReadByte+0x96>
+ 176:	81 e0       	ldi	r24, 0x01	; 1
+ 178:	03 c0       	rjmp	.+6      	; 0x180 <EEReadByte+0x96>
+ 17a:	81 e0       	ldi	r24, 0x01	; 1
+ 17c:	01 c0       	rjmp	.+2      	; 0x180 <EEReadByte+0x96>
+ 17e:	81 e0       	ldi	r24, 0x01	; 1
+ 180:	df 91       	pop	r29
+ 182:	cf 91       	pop	r28
+ 184:	1f 91       	pop	r17
+ 186:	0f 91       	pop	r16
+ 188:	ff 90       	pop	r15
+ 18a:	ef 90       	pop	r14
+ 18c:	08 95       	ret
+
+0000018e <main>:
+#define buzzer (1U<<4)
+#define LED0 (1U<<5)
+
+unsigned char hour, mint, second, day, month, year;
+int main(void)
+{
+ 18e:	cf 93       	push	r28
+ 190:	df 93       	push	r29
+ 192:	cd b7       	in	r28, 0x3d	; 61
+ 194:	de b7       	in	r29, 0x3e	; 62
+ 196:	2e 97       	sbiw	r28, 0x0e	; 14
+ 198:	0f b6       	in	r0, 0x3f	; 63
+ 19a:	f8 94       	cli
+ 19c:	de bf       	out	0x3e, r29	; 62
+ 19e:	0f be       	out	0x3f, r0	; 63
+ 1a0:	cd bf       	out	0x3d, r28	; 61
+	SPI SPI1;
+	SPI1.MasterSlaveSelect=Slave;
+ 1a2:	1c 82       	std	Y+4, r1	; 0x04
+	SPI1.SPIINTERRUPT=Disaple;
+ 1a4:	19 82       	std	Y+1, r1	; 0x01
+	SPI1.DoubleSpeed=Disaple;
+ 1a6:	1f 82       	std	Y+7, r1	; 0x07
+	SPI1.SPIMode=Mode0;
+ 1a8:	1d 82       	std	Y+5, r1	; 0x05
+	SPI1.SPIEnable=Enable;
+ 1aa:	81 e0       	ldi	r24, 0x01	; 1
+ 1ac:	8a 83       	std	Y+2, r24	; 0x02
+	SPI1.DataOrder=MSB_First;	
+ 1ae:	1b 82       	std	Y+3, r1	; 0x03
+	SPI_SlaveInit(&SPI1);
+ 1b0:	ce 01       	movw	r24, r28
+ 1b2:	01 96       	adiw	r24, 0x01	; 1
+ 1b4:	0e 94 31 03 	call	0x662	; 0x662 <SPI_SlaveInit>
+	
+	
+	uint8_t u8ebyte=0;
+ 1b8:	18 86       	std	Y+8, r1	; 0x08
+	uint8_t hihi=0;
+ 1ba:	19 86       	std	Y+9, r1	; 0x09
+	uint16_t m=0;
+	uint16_t n=0;
+	uint16_t q=0;
+	
+	uint16_t ii=eeprom_read_word ((uint16_t*)65520);
+	DDRD &= ~ SW0;
+ 1bc:	88 98       	cbi	0x11, 0	; 17
+	DDRD |= buzzer;
+ 1be:	8c 9a       	sbi	0x11, 4	; 17
+	DDRD |= LED0;
+ 1c0:	8d 9a       	sbi	0x11, 5	; 17
+
+	char buffer=0;
+	char flag = 0;
+	 uint8_t number[5];
+	 memset(number,0,5);
+ 1c2:	fe 01       	movw	r30, r28
+ 1c4:	3a 96       	adiw	r30, 0x0a	; 10
+ 1c6:	85 e0       	ldi	r24, 0x05	; 5
+ 1c8:	df 01       	movw	r26, r30
+ 1ca:	1d 92       	st	X+, r1
+ 1cc:	8a 95       	dec	r24
+ 1ce:	e9 f7       	brne	.-6      	; 0x1ca <main+0x3c>
+	 uint16_t start =0;
+	 TWIInit();
+ 1d0:	0e 94 8f 03 	call	0x71e	; 0x71e <TWIInit>
+	 
+     hour = 0x03; mint = 0x40 ; second = 0x00;
+ 1d4:	83 e0       	ldi	r24, 0x03	; 3
+ 1d6:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <hour>
+ 1da:	80 e4       	ldi	r24, 0x40	; 64
+ 1dc:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <mint>
+ 1e0:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <second>
+     RTC_Set_Time(); 	// Set time 23:58:30
+ 1e4:	0e 94 cb 02 	call	0x596	; 0x596 <RTC_Set_Time>
+     
+     day = 0x13; month = 0x02 ; year = 0x17;
+ 1e8:	83 e1       	ldi	r24, 0x13	; 19
+ 1ea:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <day>
+ 1ee:	82 e0       	ldi	r24, 0x02	; 2
+ 1f0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+ 1f4:	87 e1       	ldi	r24, 0x17	; 23
+ 1f6:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <year>
+     RTC_Set_Date(); 	// Set date 28-01-2017
+ 1fa:	0e 94 e2 02 	call	0x5c4	; 0x5c4 <RTC_Set_Date>
+	DDRD &= ~ SW0;
+	DDRD |= buzzer;
+	DDRD |= LED0;
+
+	char buffer=0;
+	char flag = 0;
+ 1fe:	00 e0       	ldi	r16, 0x00	; 0
+	uint16_t ii=eeprom_read_word ((uint16_t*)65520);
+	DDRD &= ~ SW0;
+	DDRD |= buzzer;
+	DDRD |= LED0;
+
+	char buffer=0;
+ 200:	10 e0       	ldi	r17, 0x00	; 0
+			_delay_ms(10);	
+					
+		}
+		if (flag==0)
+		{
+			flag=1;
+ 202:	55 24       	eor	r5, r5
+ 204:	53 94       	inc	r5
+ 206:	3e 01       	movw	r6, r28
+ 208:	bf e0       	ldi	r27, 0x0F	; 15
+ 20a:	6b 0e       	add	r6, r27
+ 20c:	71 1c       	adc	r7, r1
+				{
+					for(m=0;(m<5);m++)
+					{
+						number[m]=spi_tranceiver(0);
+					}
+					start = ((number[4]*1)+(number[3]*10)+(number[2]*100)+(number[1]*1000)+(number[0]*10000));
+ 20e:	0f 2e       	mov	r0, r31
+ 210:	f4 e6       	ldi	r31, 0x64	; 100
+ 212:	2f 2e       	mov	r2, r31
+ 214:	f0 2d       	mov	r31, r0
+			}
+			
+			
+			else if (buffer=='b')
+			{
+				PORTD ^= buzzer ;
+ 216:	68 94       	set
+ 218:	aa 24       	eor	r10, r10
+ 21a:	a4 f8       	bld	r10, 4
+				PORTD ^= LED0;
+ 21c:	68 94       	set
+ 21e:	bb 24       	eor	r11, r11
+ 220:	b5 f8       	bld	r11, 5
+				spi_tranceiver(0);
+				_delay_ms(10);
+				spi_tranceiver(0);
+				_delay_ms(10);
+				
+				for(i=0;i<1024;i++)
+ 222:	41 2c       	mov	r4, r1
+ 224:	31 2c       	mov	r3, r1
+	 
+	 
+	while(1)
+	{
+		//TODO:: Please write your application code
+		ii=eeprom_read_word ((uint16_t*)65520);
+ 226:	80 ef       	ldi	r24, 0xF0	; 240
+ 228:	9f ef       	ldi	r25, 0xFF	; 255
+ 22a:	0e 94 b6 03 	call	0x76c	; 0x76c <eeprom_read_word>
+ 22e:	7c 01       	movw	r14, r24
+		if ((PIND&SW0)!=0)
+ 230:	80 9b       	sbis	0x10, 0	; 16
+ 232:	0b c0       	rjmp	.+22     	; 0x24a <main+0xbc>
+		{
+			EEWriteByte(65535, 190);
+ 234:	6e eb       	ldi	r22, 0xBE	; 190
+ 236:	8f ef       	ldi	r24, 0xFF	; 255
+ 238:	9f ef       	ldi	r25, 0xFF	; 255
+ 23a:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 23e:	ef e1       	ldi	r30, 0x1F	; 31
+ 240:	fe e4       	ldi	r31, 0x4E	; 78
+ 242:	31 97       	sbiw	r30, 0x01	; 1
+ 244:	f1 f7       	brne	.-4      	; 0x242 <main+0xb4>
+ 246:	00 c0       	rjmp	.+0      	; 0x248 <main+0xba>
+ 248:	00 00       	nop
+			_delay_ms(10);	
+					
+		}
+		if (flag==0)
+ 24a:	01 11       	cpse	r16, r1
+ 24c:	18 c0       	rjmp	.+48     	; 0x27e <main+0xf0>
+		{
+			flag=1;
+			EEReadByte(65535, &u8ebyte);
+ 24e:	be 01       	movw	r22, r28
+ 250:	68 5f       	subi	r22, 0xF8	; 248
+ 252:	7f 4f       	sbci	r23, 0xFF	; 255
+ 254:	8f ef       	ldi	r24, 0xFF	; 255
+ 256:	9f ef       	ldi	r25, 0xFF	; 255
+ 258:	0e 94 75 00 	call	0xea	; 0xea <EEReadByte>
+ 25c:	8f e1       	ldi	r24, 0x1F	; 31
+ 25e:	9e e4       	ldi	r25, 0x4E	; 78
+ 260:	01 97       	sbiw	r24, 0x01	; 1
+ 262:	f1 f7       	brne	.-4      	; 0x260 <main+0xd2>
+ 264:	00 c0       	rjmp	.+0      	; 0x266 <main+0xd8>
+ 266:	00 00       	nop
+			_delay_ms(10);
+			buffer=spi_tranceiver(u8ebyte);
+ 268:	88 85       	ldd	r24, Y+8	; 0x08
+ 26a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 26e:	18 2f       	mov	r17, r24
+ 270:	af e1       	ldi	r26, 0x1F	; 31
+ 272:	be e4       	ldi	r27, 0x4E	; 78
+ 274:	11 97       	sbiw	r26, 0x01	; 1
+ 276:	f1 f7       	brne	.-4      	; 0x274 <main+0xe6>
+ 278:	00 c0       	rjmp	.+0      	; 0x27a <main+0xec>
+ 27a:	00 00       	nop
+			_delay_ms(10);	
+					
+		}
+		if (flag==0)
+		{
+			flag=1;
+ 27c:	05 2d       	mov	r16, r5
+			_delay_ms(10);
+			buffer=spi_tranceiver(u8ebyte);
+			_delay_ms(10);
+		}
+		
+		if (buffer=='N')
+ 27e:	1e 34       	cpi	r17, 0x4E	; 78
+ 280:	59 f4       	brne	.+22     	; 0x298 <main+0x10a>
+		{
+			EEWriteByte(65535, 0);
+ 282:	60 e0       	ldi	r22, 0x00	; 0
+ 284:	8f ef       	ldi	r24, 0xFF	; 255
+ 286:	9f ef       	ldi	r25, 0xFF	; 255
+ 288:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+ 28c:	ef e1       	ldi	r30, 0x1F	; 31
+ 28e:	fe e4       	ldi	r31, 0x4E	; 78
+ 290:	31 97       	sbiw	r30, 0x01	; 1
+ 292:	f1 f7       	brne	.-4      	; 0x290 <main+0x102>
+ 294:	00 c0       	rjmp	.+0      	; 0x296 <main+0x108>
+ 296:	00 00       	nop
+				buffer=spi_tranceiver(0);
+			}
+			
+		}
+		
+			buffer=spi_tranceiver(u8ebyte);
+ 298:	88 85       	ldd	r24, Y+8	; 0x08
+ 29a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 29e:	18 2f       	mov	r17, r24
+			
+			if (buffer=='/')
+ 2a0:	8f 32       	cpi	r24, 0x2F	; 47
+ 2a2:	81 f5       	brne	.+96     	; 0x304 <main+0x176>
+			{
+				spi_tranceiver(0);
+ 2a4:	80 e0       	ldi	r24, 0x00	; 0
+ 2a6:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 2aa:	8f e1       	ldi	r24, 0x1F	; 31
+ 2ac:	9e e4       	ldi	r25, 0x4E	; 78
+ 2ae:	01 97       	sbiw	r24, 0x01	; 1
+ 2b0:	f1 f7       	brne	.-4      	; 0x2ae <main+0x120>
+ 2b2:	00 c0       	rjmp	.+0      	; 0x2b4 <main+0x126>
+ 2b4:	00 00       	nop
+				_delay_ms(10);
+				spi_tranceiver(0);
+ 2b6:	80 e0       	ldi	r24, 0x00	; 0
+ 2b8:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 2bc:	af e1       	ldi	r26, 0x1F	; 31
+ 2be:	be e4       	ldi	r27, 0x4E	; 78
+ 2c0:	11 97       	sbiw	r26, 0x01	; 1
+ 2c2:	f1 f7       	brne	.-4      	; 0x2c0 <main+0x132>
+ 2c4:	00 c0       	rjmp	.+0      	; 0x2c6 <main+0x138>
+ 2c6:	00 00       	nop
+				_delay_ms(10);
+				
+				for(i=0;i<1024;i++)
+ 2c8:	e4 2c       	mov	r14, r4
+ 2ca:	f3 2c       	mov	r15, r3
+				{
+					EEReadByte(i, &u8ebyte);
+ 2cc:	be 01       	movw	r22, r28
+ 2ce:	68 5f       	subi	r22, 0xF8	; 248
+ 2d0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2d2:	c7 01       	movw	r24, r14
+ 2d4:	0e 94 75 00 	call	0xea	; 0xea <EEReadByte>
+					spi_tranceiver(u8ebyte);
+ 2d8:	88 85       	ldd	r24, Y+8	; 0x08
+ 2da:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+					if((i%8==0)&&(((i/8)%2)==0))
+ 2de:	c7 01       	movw	r24, r14
+ 2e0:	87 70       	andi	r24, 0x07	; 7
+ 2e2:	99 27       	eor	r25, r25
+ 2e4:	89 2b       	or	r24, r25
+ 2e6:	31 f4       	brne	.+12     	; 0x2f4 <main+0x166>
+ 2e8:	e3 fc       	sbrc	r14, 3
+ 2ea:	04 c0       	rjmp	.+8      	; 0x2f4 <main+0x166>
+					{
+						if(u8ebyte==255){
+ 2ec:	88 85       	ldd	r24, Y+8	; 0x08
+ 2ee:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2f0:	09 f4       	brne	.+2      	; 0x2f4 <main+0x166>
+ 2f2:	99 cf       	rjmp	.-206    	; 0x226 <main+0x98>
+				spi_tranceiver(0);
+				_delay_ms(10);
+				spi_tranceiver(0);
+				_delay_ms(10);
+				
+				for(i=0;i<1024;i++)
+ 2f4:	bf ef       	ldi	r27, 0xFF	; 255
+ 2f6:	eb 1a       	sub	r14, r27
+ 2f8:	fb 0a       	sbc	r15, r27
+ 2fa:	e1 14       	cp	r14, r1
+ 2fc:	e4 e0       	ldi	r30, 0x04	; 4
+ 2fe:	fe 06       	cpc	r15, r30
+ 300:	29 f7       	brne	.-54     	; 0x2cc <main+0x13e>
+ 302:	91 cf       	rjmp	.-222    	; 0x226 <main+0x98>
+					}
+				}
+			}
+			
+			
+			else if (buffer=='b')
+ 304:	82 36       	cpi	r24, 0x62	; 98
+ 306:	39 f4       	brne	.+14     	; 0x316 <main+0x188>
+			{
+				PORTD ^= buzzer ;
+ 308:	82 b3       	in	r24, 0x12	; 18
+ 30a:	8a 25       	eor	r24, r10
+ 30c:	82 bb       	out	0x12, r24	; 18
+				PORTD ^= LED0;
+ 30e:	82 b3       	in	r24, 0x12	; 18
+ 310:	8b 25       	eor	r24, r11
+ 312:	82 bb       	out	0x12, r24	; 18
+ 314:	88 cf       	rjmp	.-240    	; 0x226 <main+0x98>
+				
+			}
+			
+			
+			else if (buffer=='c')
+ 316:	83 36       	cpi	r24, 0x63	; 99
+ 318:	19 f4       	brne	.+6      	; 0x320 <main+0x192>
+			{
+				PORTD &=~ buzzer ;
+ 31a:	94 98       	cbi	0x12, 4	; 18
+				PORTD &=~ LED0;
+ 31c:	95 98       	cbi	0x12, 5	; 18
+ 31e:	83 cf       	rjmp	.-250    	; 0x226 <main+0x98>
+			}
+			
+			else if (buffer=='d')
+ 320:	84 36       	cpi	r24, 0x64	; 100
+ 322:	19 f5       	brne	.+70     	; 0x36a <main+0x1dc>
+			{
+				for (;(ii<1024)&&(buffer!=1)&&(buffer!='N');ii++)
+ 324:	e1 14       	cp	r14, r1
+ 326:	f4 e0       	ldi	r31, 0x04	; 4
+ 328:	ff 06       	cpc	r15, r31
+ 32a:	c8 f4       	brcc	.+50     	; 0x35e <main+0x1d0>
+				{
+						buffer=spi_tranceiver(0);
+ 32c:	80 e0       	ldi	r24, 0x00	; 0
+ 32e:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 332:	18 2f       	mov	r17, r24
+						EEWriteByte(ii,buffer);
+ 334:	68 2f       	mov	r22, r24
+ 336:	c7 01       	movw	r24, r14
+ 338:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+ 33c:	8f e1       	ldi	r24, 0x1F	; 31
+ 33e:	9e e4       	ldi	r25, 0x4E	; 78
+ 340:	01 97       	sbiw	r24, 0x01	; 1
+ 342:	f1 f7       	brne	.-4      	; 0x340 <main+0x1b2>
+ 344:	00 c0       	rjmp	.+0      	; 0x346 <main+0x1b8>
+ 346:	00 00       	nop
+				PORTD &=~ LED0;
+			}
+			
+			else if (buffer=='d')
+			{
+				for (;(ii<1024)&&(buffer!=1)&&(buffer!='N');ii++)
+ 348:	9f ef       	ldi	r25, 0xFF	; 255
+ 34a:	e9 1a       	sub	r14, r25
+ 34c:	f9 0a       	sbc	r15, r25
+ 34e:	e1 14       	cp	r14, r1
+ 350:	a4 e0       	ldi	r26, 0x04	; 4
+ 352:	fa 06       	cpc	r15, r26
+ 354:	21 f0       	breq	.+8      	; 0x35e <main+0x1d0>
+ 356:	11 30       	cpi	r17, 0x01	; 1
+ 358:	11 f0       	breq	.+4      	; 0x35e <main+0x1d0>
+ 35a:	1e 34       	cpi	r17, 0x4E	; 78
+ 35c:	39 f7       	brne	.-50     	; 0x32c <main+0x19e>
+						buffer=spi_tranceiver(0);
+						EEWriteByte(ii,buffer);
+						_delay_ms(10);
+						
+				}
+				eeprom_write_word ((uint16_t*)65520, ii);
+ 35e:	b7 01       	movw	r22, r14
+ 360:	80 ef       	ldi	r24, 0xF0	; 240
+ 362:	9f ef       	ldi	r25, 0xFF	; 255
+ 364:	0e 94 bc 03 	call	0x778	; 0x778 <eeprom_write_word>
+ 368:	5e cf       	rjmp	.-324    	; 0x226 <main+0x98>
+			}
+			
+			
+			else if (buffer=='e')
+ 36a:	85 36       	cpi	r24, 0x65	; 101
+ 36c:	09 f0       	breq	.+2      	; 0x370 <main+0x1e2>
+ 36e:	69 c0       	rjmp	.+210    	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+			{
+				if(spi_tranceiver(0)=='E')
+ 370:	80 e0       	ldi	r24, 0x00	; 0
+ 372:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 376:	85 34       	cpi	r24, 0x45	; 69
+ 378:	09 f0       	breq	.+2      	; 0x37c <main+0x1ee>
+ 37a:	55 cf       	rjmp	.-342    	; 0x226 <main+0x98>
+ 37c:	fe 01       	movw	r30, r28
+ 37e:	3a 96       	adiw	r30, 0x0a	; 10
+ 380:	7f 01       	movw	r14, r30
+				{
+						for(m=0;(m<5);m++)
+						{
+							number[m]=spi_tranceiver(0);
+ 382:	80 e0       	ldi	r24, 0x00	; 0
+ 384:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 388:	d7 01       	movw	r26, r14
+ 38a:	8d 93       	st	X+, r24
+ 38c:	7d 01       	movw	r14, r26
+			
+			else if (buffer=='e')
+			{
+				if(spi_tranceiver(0)=='E')
+				{
+						for(m=0;(m<5);m++)
+ 38e:	a6 15       	cp	r26, r6
+ 390:	b7 05       	cpc	r27, r7
+ 392:	b9 f7       	brne	.-18     	; 0x382 <main+0x1f4>
+						{
+							number[m]=spi_tranceiver(0);
+						}
+						start = ((number[4]*1)+(number[3]*10)+(number[2]*100)+(number[1]*1000)+(number[0]*10000));
+ 394:	2e 85       	ldd	r18, Y+14	; 0x0e
+ 396:	8d 85       	ldd	r24, Y+13	; 0x0d
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	ac 01       	movw	r20, r24
+ 39c:	44 0f       	add	r20, r20
+ 39e:	55 1f       	adc	r21, r21
+ 3a0:	88 0f       	add	r24, r24
+ 3a2:	99 1f       	adc	r25, r25
+ 3a4:	88 0f       	add	r24, r24
+ 3a6:	99 1f       	adc	r25, r25
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	84 0f       	add	r24, r20
+ 3ae:	95 1f       	adc	r25, r21
+ 3b0:	82 0f       	add	r24, r18
+ 3b2:	91 1d       	adc	r25, r1
+ 3b4:	2c 85       	ldd	r18, Y+12	; 0x0c
+ 3b6:	22 9e       	mul	r2, r18
+ 3b8:	80 0d       	add	r24, r0
+ 3ba:	91 1d       	adc	r25, r1
+ 3bc:	11 24       	eor	r1, r1
+ 3be:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 3c0:	e8 ee       	ldi	r30, 0xE8	; 232
+ 3c2:	f3 e0       	ldi	r31, 0x03	; 3
+ 3c4:	2e 9f       	mul	r18, r30
+ 3c6:	70 01       	movw	r14, r0
+ 3c8:	2f 9f       	mul	r18, r31
+ 3ca:	f0 0c       	add	r15, r0
+ 3cc:	11 24       	eor	r1, r1
+ 3ce:	8e 0d       	add	r24, r14
+ 3d0:	9f 1d       	adc	r25, r15
+ 3d2:	2a 85       	ldd	r18, Y+10	; 0x0a
+ 3d4:	40 e1       	ldi	r20, 0x10	; 16
+ 3d6:	57 e2       	ldi	r21, 0x27	; 39
+ 3d8:	24 9f       	mul	r18, r20
+ 3da:	70 01       	movw	r14, r0
+ 3dc:	25 9f       	mul	r18, r21
+ 3de:	f0 0c       	add	r15, r0
+ 3e0:	11 24       	eor	r1, r1
+ 3e2:	e8 0e       	add	r14, r24
+ 3e4:	f9 1e       	adc	r15, r25
+						
+						for ((n=start),(q=0);(n<(start+16))&&(buffer!=1)&&(buffer!='N')&&(q<16);n++,q++)
+ 3e6:	47 01       	movw	r8, r14
+ 3e8:	50 e1       	ldi	r21, 0x10	; 16
+ 3ea:	85 0e       	add	r8, r21
+ 3ec:	91 1c       	adc	r9, r1
+ 3ee:	e8 14       	cp	r14, r8
+ 3f0:	f9 04       	cpc	r15, r9
+ 3f2:	08 f0       	brcs	.+2      	; 0x3f6 <main+0x268>
+ 3f4:	18 cf       	rjmp	.-464    	; 0x226 <main+0x98>
+ 3f6:	67 01       	movw	r12, r14
+						{
+							buffer=spi_tranceiver(0);
+ 3f8:	80 e0       	ldi	r24, 0x00	; 0
+ 3fa:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 3fe:	18 2f       	mov	r17, r24
+							EEWriteByte(n,buffer);
+ 400:	68 2f       	mov	r22, r24
+ 402:	c6 01       	movw	r24, r12
+ 404:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+ 408:	8f e1       	ldi	r24, 0x1F	; 31
+ 40a:	9e e4       	ldi	r25, 0x4E	; 78
+ 40c:	01 97       	sbiw	r24, 0x01	; 1
+ 40e:	f1 f7       	brne	.-4      	; 0x40c <__LOCK_REGION_LENGTH__+0xc>
+ 410:	00 c0       	rjmp	.+0      	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 412:	00 00       	nop
+						{
+							number[m]=spi_tranceiver(0);
+						}
+						start = ((number[4]*1)+(number[3]*10)+(number[2]*100)+(number[1]*1000)+(number[0]*10000));
+						
+						for ((n=start),(q=0);(n<(start+16))&&(buffer!=1)&&(buffer!='N')&&(q<16);n++,q++)
+ 414:	9f ef       	ldi	r25, 0xFF	; 255
+ 416:	c9 1a       	sub	r12, r25
+ 418:	d9 0a       	sbc	r13, r25
+ 41a:	c8 14       	cp	r12, r8
+ 41c:	d9 04       	cpc	r13, r9
+ 41e:	20 f4       	brcc	.+8      	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+ 420:	11 30       	cpi	r17, 0x01	; 1
+ 422:	11 f0       	breq	.+4      	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+ 424:	1e 34       	cpi	r17, 0x4E	; 78
+ 426:	41 f7       	brne	.-48     	; 0x3f8 <main+0x26a>
+							
+						}
+			
+						for ((n=start),(q=0);(n<(start+16))&&(q<16);n++,q++)
+						{
+							EEReadByte(n, &hihi);
+ 428:	be 01       	movw	r22, r28
+ 42a:	67 5f       	subi	r22, 0xF7	; 247
+ 42c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 42e:	c7 01       	movw	r24, r14
+ 430:	0e 94 75 00 	call	0xea	; 0xea <EEReadByte>
+							EEWriteByte(n,buffer);
+							_delay_ms(10);
+							
+						}
+			
+						for ((n=start),(q=0);(n<(start+16))&&(q<16);n++,q++)
+ 434:	af ef       	ldi	r26, 0xFF	; 255
+ 436:	ea 1a       	sub	r14, r26
+ 438:	fa 0a       	sbc	r15, r26
+ 43a:	e8 14       	cp	r14, r8
+ 43c:	f9 04       	cpc	r15, r9
+ 43e:	a0 f3       	brcs	.-24     	; 0x428 <__LOCK_REGION_LENGTH__+0x28>
+ 440:	f2 ce       	rjmp	.-540    	; 0x226 <main+0x98>
+			
+			}
+			
+			
+			
+		else if (buffer=='f')
+ 442:	86 36       	cpi	r24, 0x66	; 102
+ 444:	09 f0       	breq	.+2      	; 0x448 <__LOCK_REGION_LENGTH__+0x48>
+ 446:	69 c0       	rjmp	.+210    	; 0x51a <__LOCK_REGION_LENGTH__+0x11a>
+			{
+				if(spi_tranceiver(0)=='E')
+ 448:	80 e0       	ldi	r24, 0x00	; 0
+ 44a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 44e:	85 34       	cpi	r24, 0x45	; 69
+ 450:	09 f0       	breq	.+2      	; 0x454 <__LOCK_REGION_LENGTH__+0x54>
+ 452:	e9 ce       	rjmp	.-558    	; 0x226 <main+0x98>
+ 454:	fe 01       	movw	r30, r28
+ 456:	3a 96       	adiw	r30, 0x0a	; 10
+ 458:	7f 01       	movw	r14, r30
+				{
+					for(m=0;(m<5);m++)
+					{
+						number[m]=spi_tranceiver(0);
+ 45a:	80 e0       	ldi	r24, 0x00	; 0
+ 45c:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 460:	d7 01       	movw	r26, r14
+ 462:	8d 93       	st	X+, r24
+ 464:	7d 01       	movw	r14, r26
+			
+		else if (buffer=='f')
+			{
+				if(spi_tranceiver(0)=='E')
+				{
+					for(m=0;(m<5);m++)
+ 466:	a6 15       	cp	r26, r6
+ 468:	b7 05       	cpc	r27, r7
+ 46a:	b9 f7       	brne	.-18     	; 0x45a <__LOCK_REGION_LENGTH__+0x5a>
+					{
+						number[m]=spi_tranceiver(0);
+					}
+					start = ((number[4]*1)+(number[3]*10)+(number[2]*100)+(number[1]*1000)+(number[0]*10000));
+ 46c:	2e 85       	ldd	r18, Y+14	; 0x0e
+ 46e:	8d 85       	ldd	r24, Y+13	; 0x0d
+ 470:	90 e0       	ldi	r25, 0x00	; 0
+ 472:	ac 01       	movw	r20, r24
+ 474:	44 0f       	add	r20, r20
+ 476:	55 1f       	adc	r21, r21
+ 478:	88 0f       	add	r24, r24
+ 47a:	99 1f       	adc	r25, r25
+ 47c:	88 0f       	add	r24, r24
+ 47e:	99 1f       	adc	r25, r25
+ 480:	88 0f       	add	r24, r24
+ 482:	99 1f       	adc	r25, r25
+ 484:	84 0f       	add	r24, r20
+ 486:	95 1f       	adc	r25, r21
+ 488:	82 0f       	add	r24, r18
+ 48a:	91 1d       	adc	r25, r1
+ 48c:	2c 85       	ldd	r18, Y+12	; 0x0c
+ 48e:	22 9e       	mul	r2, r18
+ 490:	80 0d       	add	r24, r0
+ 492:	91 1d       	adc	r25, r1
+ 494:	11 24       	eor	r1, r1
+ 496:	2b 85       	ldd	r18, Y+11	; 0x0b
+ 498:	e8 ee       	ldi	r30, 0xE8	; 232
+ 49a:	f3 e0       	ldi	r31, 0x03	; 3
+ 49c:	2e 9f       	mul	r18, r30
+ 49e:	70 01       	movw	r14, r0
+ 4a0:	2f 9f       	mul	r18, r31
+ 4a2:	f0 0c       	add	r15, r0
+ 4a4:	11 24       	eor	r1, r1
+ 4a6:	8e 0d       	add	r24, r14
+ 4a8:	9f 1d       	adc	r25, r15
+ 4aa:	2a 85       	ldd	r18, Y+10	; 0x0a
+ 4ac:	40 e1       	ldi	r20, 0x10	; 16
+ 4ae:	57 e2       	ldi	r21, 0x27	; 39
+ 4b0:	24 9f       	mul	r18, r20
+ 4b2:	70 01       	movw	r14, r0
+ 4b4:	25 9f       	mul	r18, r21
+ 4b6:	f0 0c       	add	r15, r0
+ 4b8:	11 24       	eor	r1, r1
+ 4ba:	e8 0e       	add	r14, r24
+ 4bc:	f9 1e       	adc	r15, r25
+					
+					for ((n=start),(q=0);(n<(start+16))&&(buffer!=1)&&(buffer!='N')&&(q<16);n++,q++)
+ 4be:	47 01       	movw	r8, r14
+ 4c0:	50 e1       	ldi	r21, 0x10	; 16
+ 4c2:	85 0e       	add	r8, r21
+ 4c4:	91 1c       	adc	r9, r1
+ 4c6:	e8 14       	cp	r14, r8
+ 4c8:	f9 04       	cpc	r15, r9
+ 4ca:	08 f0       	brcs	.+2      	; 0x4ce <__LOCK_REGION_LENGTH__+0xce>
+ 4cc:	ac ce       	rjmp	.-680    	; 0x226 <main+0x98>
+ 4ce:	67 01       	movw	r12, r14
+					{
+						buffer=spi_tranceiver(0);
+ 4d0:	80 e0       	ldi	r24, 0x00	; 0
+ 4d2:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 4d6:	18 2f       	mov	r17, r24
+						EEWriteByte(n,buffer);
+ 4d8:	68 2f       	mov	r22, r24
+ 4da:	c6 01       	movw	r24, r12
+ 4dc:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+ 4e0:	8f e1       	ldi	r24, 0x1F	; 31
+ 4e2:	9e e4       	ldi	r25, 0x4E	; 78
+ 4e4:	01 97       	sbiw	r24, 0x01	; 1
+ 4e6:	f1 f7       	brne	.-4      	; 0x4e4 <__LOCK_REGION_LENGTH__+0xe4>
+ 4e8:	00 c0       	rjmp	.+0      	; 0x4ea <__LOCK_REGION_LENGTH__+0xea>
+ 4ea:	00 00       	nop
+					{
+						number[m]=spi_tranceiver(0);
+					}
+					start = ((number[4]*1)+(number[3]*10)+(number[2]*100)+(number[1]*1000)+(number[0]*10000));
+					
+					for ((n=start),(q=0);(n<(start+16))&&(buffer!=1)&&(buffer!='N')&&(q<16);n++,q++)
+ 4ec:	9f ef       	ldi	r25, 0xFF	; 255
+ 4ee:	c9 1a       	sub	r12, r25
+ 4f0:	d9 0a       	sbc	r13, r25
+ 4f2:	c8 14       	cp	r12, r8
+ 4f4:	d9 04       	cpc	r13, r9
+ 4f6:	20 f4       	brcc	.+8      	; 0x500 <__LOCK_REGION_LENGTH__+0x100>
+ 4f8:	11 30       	cpi	r17, 0x01	; 1
+ 4fa:	11 f0       	breq	.+4      	; 0x500 <__LOCK_REGION_LENGTH__+0x100>
+ 4fc:	1e 34       	cpi	r17, 0x4E	; 78
+ 4fe:	41 f7       	brne	.-48     	; 0x4d0 <__LOCK_REGION_LENGTH__+0xd0>
+						
+					}
+			
+					for ((n=start),(q=0);(n<(start+16))&&(q<16);n++,q++)
+					{
+						EEReadByte(n, &hihi);
+ 500:	be 01       	movw	r22, r28
+ 502:	67 5f       	subi	r22, 0xF7	; 247
+ 504:	7f 4f       	sbci	r23, 0xFF	; 255
+ 506:	c7 01       	movw	r24, r14
+ 508:	0e 94 75 00 	call	0xea	; 0xea <EEReadByte>
+						EEWriteByte(n,buffer);
+						_delay_ms(10);
+						
+					}
+			
+					for ((n=start),(q=0);(n<(start+16))&&(q<16);n++,q++)
+ 50c:	af ef       	ldi	r26, 0xFF	; 255
+ 50e:	ea 1a       	sub	r14, r26
+ 510:	fa 0a       	sbc	r15, r26
+ 512:	e8 14       	cp	r14, r8
+ 514:	f9 04       	cpc	r15, r9
+ 516:	a0 f3       	brcs	.-24     	; 0x500 <__LOCK_REGION_LENGTH__+0x100>
+ 518:	86 ce       	rjmp	.-756    	; 0x226 <main+0x98>
+						
+					}
+					
+				}
+			}
+			else if (buffer=='g')
+ 51a:	87 36       	cpi	r24, 0x67	; 103
+ 51c:	e9 f4       	brne	.+58     	; 0x558 <__LOCK_REGION_LENGTH__+0x158>
+			{
+				RTC_Get_Time();
+ 51e:	0e 94 f9 02 	call	0x5f2	; 0x5f2 <RTC_Get_Time>
+				RTC_Get_Date();
+ 522:	0e 94 15 03 	call	0x62a	; 0x62a <RTC_Get_Date>
+				spi_tranceiver(second);
+ 526:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <second>
+ 52a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+				spi_tranceiver(mint);
+ 52e:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <mint>
+ 532:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+				spi_tranceiver(hour);
+ 536:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <hour>
+ 53a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+				spi_tranceiver(day);
+ 53e:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <day>
+ 542:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+				spi_tranceiver(month);
+ 546:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 54a:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+				spi_tranceiver(year);
+ 54e:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <year>
+ 552:	0e 94 61 03 	call	0x6c2	; 0x6c2 <spi_tranceiver>
+ 556:	67 ce       	rjmp	.-818    	; 0x226 <main+0x98>
+			
+			}
+				
+			
+			else if (buffer=='h')
+ 558:	88 36       	cpi	r24, 0x68	; 104
+ 55a:	09 f0       	breq	.+2      	; 0x55e <__LOCK_REGION_LENGTH__+0x15e>
+ 55c:	64 ce       	rjmp	.-824    	; 0x226 <main+0x98>
+ 55e:	68 94       	set
+ 560:	ee 24       	eor	r14, r14
+ 562:	e5 f8       	bld	r14, 5
+ 564:	f1 2c       	mov	r15, r1
+			{
+				for (m=32;m<1024;m++)
+				{
+					EEWriteByte(m,255);
+ 566:	6f ef       	ldi	r22, 0xFF	; 255
+ 568:	c7 01       	movw	r24, r14
+ 56a:	0e 94 3e 00 	call	0x7c	; 0x7c <EEWriteByte>
+ 56e:	ef e1       	ldi	r30, 0x1F	; 31
+ 570:	fe e4       	ldi	r31, 0x4E	; 78
+ 572:	31 97       	sbiw	r30, 0x01	; 1
+ 574:	f1 f7       	brne	.-4      	; 0x572 <__LOCK_REGION_LENGTH__+0x172>
+ 576:	00 c0       	rjmp	.+0      	; 0x578 <__LOCK_REGION_LENGTH__+0x178>
+ 578:	00 00       	nop
+			}
+				
+			
+			else if (buffer=='h')
+			{
+				for (m=32;m<1024;m++)
+ 57a:	ff ef       	ldi	r31, 0xFF	; 255
+ 57c:	ef 1a       	sub	r14, r31
+ 57e:	ff 0a       	sbc	r15, r31
+ 580:	e1 14       	cp	r14, r1
+ 582:	44 e0       	ldi	r20, 0x04	; 4
+ 584:	f4 06       	cpc	r15, r20
+ 586:	79 f7       	brne	.-34     	; 0x566 <__LOCK_REGION_LENGTH__+0x166>
+				{
+					EEWriteByte(m,255);
+					_delay_ms(10);
+					
+				}
+				eeprom_write_word ((uint16_t*)65520, 32);
+ 588:	60 e2       	ldi	r22, 0x20	; 32
+ 58a:	70 e0       	ldi	r23, 0x00	; 0
+ 58c:	80 ef       	ldi	r24, 0xF0	; 240
+ 58e:	9f ef       	ldi	r25, 0xFF	; 255
+ 590:	0e 94 bc 03 	call	0x778	; 0x778 <eeprom_write_word>
+ 594:	48 ce       	rjmp	.-880    	; 0x226 <main+0x98>
+
+00000596 <RTC_Set_Time>:
+ 596:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 59a:	80 ed       	ldi	r24, 0xD0	; 208
+ 59c:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5a0:	80 e0       	ldi	r24, 0x00	; 0
+ 5a2:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5a6:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <second>
+ 5aa:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5ae:	80 91 65 00 	lds	r24, 0x0065	; 0x800065 <mint>
+ 5b2:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5b6:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <hour>
+ 5ba:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5be:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+ 5c2:	08 95       	ret
+
+000005c4 <RTC_Set_Date>:
+ 5c4:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 5c8:	80 ed       	ldi	r24, 0xD0	; 208
+ 5ca:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5ce:	84 e0       	ldi	r24, 0x04	; 4
+ 5d0:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5d4:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <day>
+ 5d8:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5dc:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <_edata>
+ 5e0:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5e4:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <year>
+ 5e8:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5ec:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+ 5f0:	08 95       	ret
+
+000005f2 <RTC_Get_Time>:
+ 5f2:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 5f6:	80 ed       	ldi	r24, 0xD0	; 208
+ 5f8:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 5fc:	80 e0       	ldi	r24, 0x00	; 0
+ 5fe:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 602:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 606:	81 ed       	ldi	r24, 0xD1	; 209
+ 608:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 60c:	0e 94 a5 03 	call	0x74a	; 0x74a <TWIReadACK>
+ 610:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <second>
+ 614:	0e 94 a5 03 	call	0x74a	; 0x74a <TWIReadACK>
+ 618:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <mint>
+ 61c:	0e 94 ac 03 	call	0x758	; 0x758 <TWIReadNACK>
+ 620:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <hour>
+ 624:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+ 628:	08 95       	ret
+
+0000062a <RTC_Get_Date>:
+ 62a:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 62e:	80 ed       	ldi	r24, 0xD0	; 208
+ 630:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 634:	84 e0       	ldi	r24, 0x04	; 4
+ 636:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 63a:	0e 94 95 03 	call	0x72a	; 0x72a <TWIStart>
+ 63e:	81 ed       	ldi	r24, 0xD1	; 209
+ 640:	0e 94 9e 03 	call	0x73c	; 0x73c <TWIWrite>
+ 644:	0e 94 a5 03 	call	0x74a	; 0x74a <TWIReadACK>
+ 648:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <day>
+ 64c:	0e 94 a5 03 	call	0x74a	; 0x74a <TWIReadACK>
+ 650:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+ 654:	0e 94 ac 03 	call	0x758	; 0x758 <TWIReadNACK>
+ 658:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <year>
+ 65c:	0e 94 9b 03 	call	0x736	; 0x736 <TWIStop>
+ 660:	08 95       	ret
+
+00000662 <SPI_SlaveInit>:
+ 662:	fc 01       	movw	r30, r24
+ 664:	80 e4       	ldi	r24, 0x40	; 64
+ 666:	87 bb       	out	0x17, r24	; 23
+ 668:	2d b1       	in	r18, 0x0d	; 13
+ 66a:	40 81       	ld	r20, Z
+ 66c:	30 e8       	ldi	r19, 0x80	; 128
+ 66e:	43 9f       	mul	r20, r19
+ 670:	c0 01       	movw	r24, r0
+ 672:	11 24       	eor	r1, r1
+ 674:	91 81       	ldd	r25, Z+1	; 0x01
+ 676:	30 e4       	ldi	r19, 0x40	; 64
+ 678:	93 9f       	mul	r25, r19
+ 67a:	a0 01       	movw	r20, r0
+ 67c:	11 24       	eor	r1, r1
+ 67e:	48 2b       	or	r20, r24
+ 680:	42 2b       	or	r20, r18
+ 682:	92 81       	ldd	r25, Z+2	; 0x02
+ 684:	80 e2       	ldi	r24, 0x20	; 32
+ 686:	98 9f       	mul	r25, r24
+ 688:	90 01       	movw	r18, r0
+ 68a:	11 24       	eor	r1, r1
+ 68c:	24 2b       	or	r18, r20
+ 68e:	93 81       	ldd	r25, Z+3	; 0x03
+ 690:	30 e1       	ldi	r19, 0x10	; 16
+ 692:	93 9f       	mul	r25, r19
+ 694:	c0 01       	movw	r24, r0
+ 696:	11 24       	eor	r1, r1
+ 698:	82 2b       	or	r24, r18
+ 69a:	94 81       	ldd	r25, Z+4	; 0x04
+ 69c:	99 0f       	add	r25, r25
+ 69e:	99 0f       	add	r25, r25
+ 6a0:	89 2b       	or	r24, r25
+ 6a2:	8d b9       	out	0x0d, r24	; 13
+ 6a4:	9e b1       	in	r25, 0x0e	; 14
+ 6a6:	86 81       	ldd	r24, Z+6	; 0x06
+ 6a8:	89 2b       	or	r24, r25
+ 6aa:	8e b9       	out	0x0e, r24	; 14
+ 6ac:	80 81       	ld	r24, Z
+ 6ae:	81 30       	cpi	r24, 0x01	; 1
+ 6b0:	21 f4       	brne	.+8      	; 0x6ba <SPI_SlaveInit+0x58>
+ 6b2:	78 94       	sei
+ 6b4:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <FLAG>
+ 6b8:	08 95       	ret
+ 6ba:	82 e0       	ldi	r24, 0x02	; 2
+ 6bc:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <FLAG>
+ 6c0:	08 95       	ret
+
+000006c2 <spi_tranceiver>:
+ 6c2:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <FLAG2>
+ 6c6:	91 30       	cpi	r25, 0x01	; 1
+ 6c8:	19 f4       	brne	.+6      	; 0x6d0 <spi_tranceiver+0xe>
+ 6ca:	8f b9       	out	0x0f, r24	; 15
+ 6cc:	8f b1       	in	r24, 0x0f	; 15
+ 6ce:	08 95       	ret
+ 6d0:	92 30       	cpi	r25, 0x02	; 2
+ 6d2:	29 f4       	brne	.+10     	; 0x6de <spi_tranceiver+0x1c>
+ 6d4:	8f b9       	out	0x0f, r24	; 15
+ 6d6:	77 9b       	sbis	0x0e, 7	; 14
+ 6d8:	fe cf       	rjmp	.-4      	; 0x6d6 <spi_tranceiver+0x14>
+ 6da:	8f b1       	in	r24, 0x0f	; 15
+ 6dc:	08 95       	ret
+ 6de:	90 91 68 00 	lds	r25, 0x0068	; 0x800068 <FLAG>
+ 6e2:	91 30       	cpi	r25, 0x01	; 1
+ 6e4:	21 f4       	brne	.+8      	; 0x6ee <spi_tranceiver+0x2c>
+ 6e6:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <x>
+ 6ea:	8f b1       	in	r24, 0x0f	; 15
+ 6ec:	08 95       	ret
+ 6ee:	8f b9       	out	0x0f, r24	; 15
+ 6f0:	77 9b       	sbis	0x0e, 7	; 14
+ 6f2:	fe cf       	rjmp	.-4      	; 0x6f0 <spi_tranceiver+0x2e>
+ 6f4:	8f b1       	in	r24, 0x0f	; 15
+ 6f6:	08 95       	ret
+
+000006f8 <__vector_12>:
+ 6f8:	1f 92       	push	r1
+ 6fa:	0f 92       	push	r0
+ 6fc:	0f b6       	in	r0, 0x3f	; 63
+ 6fe:	0f 92       	push	r0
+ 700:	11 24       	eor	r1, r1
+ 702:	8f 93       	push	r24
+ 704:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <FLAG>
+ 708:	81 30       	cpi	r24, 0x01	; 1
+ 70a:	19 f4       	brne	.+6      	; 0x712 <__vector_12+0x1a>
+ 70c:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <x>
+ 710:	8f b9       	out	0x0f, r24	; 15
+ 712:	8f 91       	pop	r24
+ 714:	0f 90       	pop	r0
+ 716:	0f be       	out	0x3f, r0	; 63
+ 718:	0f 90       	pop	r0
+ 71a:	1f 90       	pop	r1
+ 71c:	18 95       	reti
+
+0000071e <TWIInit>:
+ 71e:	11 b8       	out	0x01, r1	; 1
+ 720:	8c e0       	ldi	r24, 0x0C	; 12
+ 722:	80 b9       	out	0x00, r24	; 0
+ 724:	84 e0       	ldi	r24, 0x04	; 4
+ 726:	86 bf       	out	0x36, r24	; 54
+ 728:	08 95       	ret
+
+0000072a <TWIStart>:
+ 72a:	84 ea       	ldi	r24, 0xA4	; 164
+ 72c:	86 bf       	out	0x36, r24	; 54
+ 72e:	06 b6       	in	r0, 0x36	; 54
+ 730:	07 fe       	sbrs	r0, 7
+ 732:	fd cf       	rjmp	.-6      	; 0x72e <TWIStart+0x4>
+ 734:	08 95       	ret
+
+00000736 <TWIStop>:
+ 736:	84 e9       	ldi	r24, 0x94	; 148
+ 738:	86 bf       	out	0x36, r24	; 54
+ 73a:	08 95       	ret
+
+0000073c <TWIWrite>:
+ 73c:	83 b9       	out	0x03, r24	; 3
+ 73e:	84 e8       	ldi	r24, 0x84	; 132
+ 740:	86 bf       	out	0x36, r24	; 54
+ 742:	06 b6       	in	r0, 0x36	; 54
+ 744:	07 fe       	sbrs	r0, 7
+ 746:	fd cf       	rjmp	.-6      	; 0x742 <TWIWrite+0x6>
+ 748:	08 95       	ret
+
+0000074a <TWIReadACK>:
+ 74a:	84 ec       	ldi	r24, 0xC4	; 196
+ 74c:	86 bf       	out	0x36, r24	; 54
+ 74e:	06 b6       	in	r0, 0x36	; 54
+ 750:	07 fe       	sbrs	r0, 7
+ 752:	fd cf       	rjmp	.-6      	; 0x74e <TWIReadACK+0x4>
+ 754:	83 b1       	in	r24, 0x03	; 3
+ 756:	08 95       	ret
+
+00000758 <TWIReadNACK>:
+ 758:	84 e8       	ldi	r24, 0x84	; 132
+ 75a:	86 bf       	out	0x36, r24	; 54
+ 75c:	06 b6       	in	r0, 0x36	; 54
+ 75e:	07 fe       	sbrs	r0, 7
+ 760:	fd cf       	rjmp	.-6      	; 0x75c <TWIReadNACK+0x4>
+ 762:	83 b1       	in	r24, 0x03	; 3
+ 764:	08 95       	ret
+
+00000766 <TWIGetStatus>:
+ 766:	81 b1       	in	r24, 0x01	; 1
+ 768:	88 7f       	andi	r24, 0xF8	; 248
+ 76a:	08 95       	ret
+
+0000076c <eeprom_read_word>:
+ 76c:	a8 e1       	ldi	r26, 0x18	; 24
+ 76e:	b0 e0       	ldi	r27, 0x00	; 0
+ 770:	42 e0       	ldi	r20, 0x02	; 2
+ 772:	50 e0       	ldi	r21, 0x00	; 0
+ 774:	0c 94 c3 03 	jmp	0x786	; 0x786 <eeprom_read_blraw>
+
+00000778 <eeprom_write_word>:
+ 778:	0e 94 d1 03 	call	0x7a2	; 0x7a2 <eeprom_write_byte>
+ 77c:	27 2f       	mov	r18, r23
+ 77e:	0c 94 d2 03 	jmp	0x7a4	; 0x7a4 <eeprom_write_r18>
+
+00000782 <eeprom_read_block>:
+ 782:	dc 01       	movw	r26, r24
+ 784:	cb 01       	movw	r24, r22
+
+00000786 <eeprom_read_blraw>:
+ 786:	fc 01       	movw	r30, r24
+ 788:	e1 99       	sbic	0x1c, 1	; 28
+ 78a:	fe cf       	rjmp	.-4      	; 0x788 <eeprom_read_blraw+0x2>
+ 78c:	06 c0       	rjmp	.+12     	; 0x79a <eeprom_read_blraw+0x14>
+ 78e:	ff bb       	out	0x1f, r31	; 31
+ 790:	ee bb       	out	0x1e, r30	; 30
+ 792:	e0 9a       	sbi	0x1c, 0	; 28
+ 794:	31 96       	adiw	r30, 0x01	; 1
+ 796:	0d b2       	in	r0, 0x1d	; 29
+ 798:	0d 92       	st	X+, r0
+ 79a:	41 50       	subi	r20, 0x01	; 1
+ 79c:	50 40       	sbci	r21, 0x00	; 0
+ 79e:	b8 f7       	brcc	.-18     	; 0x78e <eeprom_read_blraw+0x8>
+ 7a0:	08 95       	ret
+
+000007a2 <eeprom_write_byte>:
+ 7a2:	26 2f       	mov	r18, r22
+
+000007a4 <eeprom_write_r18>:
+ 7a4:	e1 99       	sbic	0x1c, 1	; 28
+ 7a6:	fe cf       	rjmp	.-4      	; 0x7a4 <eeprom_write_r18>
+ 7a8:	9f bb       	out	0x1f, r25	; 31
+ 7aa:	8e bb       	out	0x1e, r24	; 30
+ 7ac:	2d bb       	out	0x1d, r18	; 29
+ 7ae:	0f b6       	in	r0, 0x3f	; 63
+ 7b0:	f8 94       	cli
+ 7b2:	e2 9a       	sbi	0x1c, 2	; 28
+ 7b4:	e1 9a       	sbi	0x1c, 1	; 28
+ 7b6:	0f be       	out	0x3f, r0	; 63
+ 7b8:	01 96       	adiw	r24, 0x01	; 1
+ 7ba:	08 95       	ret
+
+000007bc <_exit>:
+ 7bc:	f8 94       	cli
+
+000007be <__stop_program>:
+ 7be:	ff cf       	rjmp	.-2      	; 0x7be <__stop_program>
